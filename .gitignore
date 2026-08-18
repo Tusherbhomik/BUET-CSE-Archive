@@ -1,0 +1,17 @@
+# Build artifacts / IDE output
+bin/
+build/
+out/
+.gradle/
+.idea/
+__pycache__/
+target/
+node_modules/
+*.class
+*.o
+*.obj
+*.pyc
+
+# OS junk
+.DS_Store
+Thumbs.db

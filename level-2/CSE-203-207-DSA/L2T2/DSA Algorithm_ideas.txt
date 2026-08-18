@@ -1,0 +1,7 @@
+It’s important to note the following points:
+
+Dijkstra’s algorithm works only for connected graphs.
+It works only for graphs that don’t contain any edges with a negative weight.
+It only provides the value or cost of the shortest paths.
+The algorithm works for directed and undirected graphs.
+

@@ -1,0 +1,60 @@
+# Ignore executable files
+*.exe
+
+# Ignore Visual Studio and .vs folder
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.obj
+*.pdb
+*.ilk
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.tlog
+*.idb
+*.ipch
+*.res
+
+# Ignore Windows-related files
+*.bak
+*.cab
+*.tmp
+*.~*
+*.ldb
+
+# Ignore more compiled binaries
+*.dll
+*.lib
+*.so
+*.dylib
+*.a
+*.out
+*.bin
+
+# Ignore CMake and Make build files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.make
+
+# Ignore Debug and Release folders (Visual Studio)
+Debug/
+Release/
+x64/
+x86/
+
+# Ignore all user-generated settings
+*.user
+*.suo
+*.plg
+
+# Ignore more log files
+*.log
+*.trace
+
+# Ignore more temp files
+*.swp
+*.swo

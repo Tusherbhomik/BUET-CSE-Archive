@@ -1,0 +1,71 @@
+| Course No. | Course Title                                                                                    | Credit Hour |
+| ---------- | ----------------------------------------------------------------------------------------------- | ----------: |
+| CSE 101    | Structured Programming Language                                                                 |        3.00 |
+| CSE 102    | Structured Programming Language Sessional                                                       |        1.50 |
+| EEE 163    | Introduction to Electrical Engineering                                                          |        3.00 |
+| EEE 164    | Introduction to Electrical Engineering Sessional                                                |        1.50 |
+| MATH 145   | Differential Calculus, Integral Calculus, and Coordinate Geometry                               |        3.00 |
+| ME 165     | Basic Mechanical Engineering                                                                    |        3.00 |
+| ME 174     | Mechanical Engineering Drawing and CAD                                                          |        1.50 |
+| PHY 102    | Physics Sessional                                                                               |        1.50 |
+| PHY 109    | Heat and Thermodynamics, Electricity and Magnetism, Waves and Oscillations and Mechanics        |        4.00 |
+| CHEM 113   | Chemistry                                                                                       |        3.00 |
+| CHEM 114   | Inorganic Quantitative Analysis                                                                 |        1.50 |
+| CSE 103    | Discrete Mathematics                                                                            |        3.00 |
+| CSE 107    | Object Oriented Programming Language                                                            |        3.00 |
+| CSE 108    | Object Oriented Programming Language Sessional                                                  |        1.50 |
+| HUM 172    | Developing English Skills Sessional                                                             |        1.50 |
+| HUM 183    | English                                                                                         |        3.00 |
+| MATH 147   | Ordinary Differential Equations (ODE), Partial Differential Equations (PDE) and Vector Calculus |        4.00 |
+| CSE 203    | Data Structures and Algorithms I                                                                |        3.00 |
+| CSE 204    | Data Structures and Algorithms I Sessional                                                      |        1.50 |
+| CSE 205    | Digital Logic Design                                                                            |        3.00 |
+| CSE 206    | Digital Logic Design Sessional                                                                  |        1.50 |
+| CSE 218    | Numerical Methods                                                                               |        2.00 |
+| EEE 263    | Electronic Circuits                                                                             |        4.00 |
+| EEE 264    | Electronic Circuits Sessional                                                                   |        1.50 |
+| MATH 245   | Complex Variable and Statistics                                                                 |        3.00 |
+| CSE 207    | Data Structures and Algorithms II                                                               |        3.00 |
+| CSE 208    | Data Structures and Algorithms II Sessional                                                     |        1.50 |
+| CSE 211    | Theory of Computation                                                                           |        3.00 |
+| CSE 215    | Database                                                                                        |        3.00 |
+| CSE 216    | Database Sessional                                                                              |        1.50 |
+| EEE 269    | Electrical Drives and Instrumentation                                                           |        3.00 |
+| EEE 270    | Electrical Drives and Instrumentation Sessional                                                 |        1.50 |
+| MATH 247   | Linear Algebra, Laplace Transformation and Fourier Analysis                                     |        4.00 |
+| CSE 300    | Technical Writing and Presentation                                                              |        0.75 |
+| CSE 305    | Computer Architecture                                                                           |        3.00 |
+| CSE 306    | Computer Architecture Sessional                                                                 |        0.75 |
+| CSE 307    | Software Engineering                                                                            |        3.00 |
+| CSE 308    | Software Engineering Sessional                                                                  |        0.75 |
+| CSE 309    | Compiler                                                                                        |        3.00 |
+| CSE 310    | Compiler Sessional                                                                              |        0.75 |
+| CSE 311    | Data Communication                                                                              |        3.00 |
+| CSE 315    | Microprocessors, Microcontrollers, and Embedded Systems                                         |        3.00 |
+| CSE 316    | Microprocessors, Microcontrollers, and Embedded Systems Sessional                               |        1.50 |
+| CSE 301    | Mathematical Analysis for Computer Science                                                      |        3.00 |
+| CSE 313    | Operating System                                                                                |        3.00 |
+| CSE 314    | Operating System Sessional                                                                      |        1.50 |
+| CSE 317    | Artificial Intelligence                                                                         |        3.00 |
+| CSE 318    | Artificial Intelligence Sessional                                                               |        0.75 |
+| CSE 321    | Computer Networks                                                                               |        3.00 |
+| CSE 322    | Computer Networks Sessional                                                                     |        1.50 |
+| CSE 325    | Information System Design                                                                       |        3.00 |
+| CSE 326    | Information System Design Sessional                                                             |        0.75 |
+| CSE 400    | Project and Thesis                                                                              |        3.00 |
+| CSE 405    | Computer Security                                                                               |        3.00 |
+| CSE 406    | Computer Security Sessional                                                                     |        0.75 |
+| CSE 408    | Software Development                                                                            |        1.50 |
+| CSE 409    | Computer Graphics                                                                               |        3.00 |
+| CSE 410    | Computer Graphics Sessional                                                                     |        0.75 |
+| CSE 423    | Fault Tolerant Systems                                                                          |        3.00 |
+| CSE 463    | Introduction to Bioinformatics                                                                  |        3.00 |
+| HUM 475    | Engineering Economics                                                                           |        3.00 |
+| CSE 400    | Project and Thesis                                                                              |        3.00 |
+| CSE 461    | Algorithm Engineering                                                                           |        3.00 |
+| CSE 462    | Algorithm Engineering Sessional                                                                 |        0.75 |
+| CSE 471    | Machine Learning                                                                                |        3.00 |
+| CSE 472    | Machine Learning Sessional                                                                      |        0.75 |
+| HUM 411    | Business Law                                                                                    |        2.00 |
+| HUM 473    | Financial, Cost, and Managerial Accounting                                                      |        2.00 |
+| IPE 493    | Industrial Management                                                                           |        3.00 |

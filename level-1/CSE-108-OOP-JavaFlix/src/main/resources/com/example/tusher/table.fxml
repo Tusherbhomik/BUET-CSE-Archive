@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="475.0" prefWidth="785.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tusher.TableController">
+    <children>
+        <TableView fx:id="table" layoutX="9.0" layoutY="54.0" prefHeight="336.0" prefWidth="766.0" style="-fx-background-color: #FFB6C1;">
+            <columns>
+                <TableColumn fx:id="Name" prefWidth="158.20804500579834" text="Title" />
+                <TableColumn fx:id="releaseYear" prefWidth="50.68792724609375" text="Year" />
+                <TableColumn fx:id="genre1" prefWidth="70.656005859375" text="Genre1" />
+                <TableColumn fx:id="genre2" prefWidth="66.04803466796875" text="Genre2" />
+                <TableColumn fx:id="genre3" prefWidth="61.44000244140625" text="Genre3" />
+                <TableColumn fx:id="runningTime" prefWidth="66.0479736328125" text="Minutes" />
+                <TableColumn fx:id="productionCompany" prefWidth="135.16793823242188" text="Company" />
+                <TableColumn fx:id="budget" prefWidth="80.6400146484375" text="Budget" />
+                <TableColumn fx:id="revenue" prefWidth="79.8719482421875" text="Revenue" />
+            </columns>
+         <effect>
+            <ColorAdjust />
+         </effect>
+        </TableView>
+        <Button layoutX="648.0" layoutY="424.0" mnemonicParsing="false" onAction="#ontableBackClick" prefHeight="42.0" prefWidth="114.0" text="Back ">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+               </light>
+            </Lighting>
+         </effect></Button>
+    </children>
+</AnchorPane>
