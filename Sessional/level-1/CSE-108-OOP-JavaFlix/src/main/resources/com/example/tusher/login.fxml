@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="679.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tusher.LoginController">
+    <children>
+      <ImageView fitHeight="400.0" fitWidth="749.0" layoutX="-71.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@javafilx.png" />
+         </image>
+      </ImageView>
+        <Button layoutX="424.0" layoutY="146.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="41.0" prefWidth="105.0" style="-fx-background-color: white;" text="Login" wrapText="true">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font></Button>
+        <Button layoutX="253.0" layoutY="224.0" mnemonicParsing="false" onAction="#onExitClick" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #C0C0C0;" text="Exit">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font></Button>
+        <TextField fx:id="clientNameTextField" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" depthTest="DISABLE" layoutX="145.0" layoutY="146.0" prefHeight="41.0" prefWidth="267.0" promptText="Enter Your Company Name" style="-fx-background-color: #F0FFF0;">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="18.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></TextField>
+    </children>
+</AnchorPane>

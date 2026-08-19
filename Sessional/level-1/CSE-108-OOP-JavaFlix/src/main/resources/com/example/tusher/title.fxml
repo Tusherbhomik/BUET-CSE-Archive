@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="338.0" prefWidth="448.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tusher.SearchBoxController">
+   <children>
+      <TextField fx:id="movieNameTextField" layoutX="102.0" layoutY="100.0" promptText="Enter a Movie Name">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font></TextField>
+      <Button layoutX="296.0" layoutY="100.0" mnemonicParsing="false" onAction="#onMovieSearchByTitle" text="search">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="359.0" layoutY="272.0" mnemonicParsing="false" onAction="#onTitleBackClick" prefHeight="42.0" prefWidth="66.0" text="Back ">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

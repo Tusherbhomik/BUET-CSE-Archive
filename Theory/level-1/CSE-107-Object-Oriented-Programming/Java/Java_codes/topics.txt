@@ -1,0 +1,99 @@
+Intro
+-Primitive types
+-Non-primitive types
+-References
+
+Moredetails
+-Array
+-Multidimensional Arrays
+-Command line
+-Foreach
+-Scanner
+-JOptionPane
+-Static
+-Final
+OK
+
+Nested and Inner Class
+-Inner class
+-Static nested class
+OK
+
+Variable arguments
+Local variable type inference
+OK
+
+String
+StringBuffer+StringBuilder
+StringTokenizer
+OK
+
+Inheritance
+Dynamic method dispatch
+Abstract class
+Anonymouse subclass
+Final inheritance
+OK
+
+Object class
+-equals
+-toString
+-hashCode
+OK
+
+Package
+-access protection
+
+Interface
+-nested
+-variables
+-extending
+-default methods
+-static methods
+-private methods
+OK
+
+Exception
+-classes hierarchy
+-multiple catch clause
+-throws
+-custom exception
+OK
+
+Thread
+-multitasking & multithreading
+-main thread
+-creating thread
+-thread life cycle,deadlock,suspend,resume,stop
+
+-synchronization
+-inter thread communication
+?
+
+
+Networking
+-TCP
+-socket,serversocket
+-socketwrapper
+-UDP
+-InetAddress
+-URL
+-HttpUrlConnection
+OK
+
+Enumeration
+Type Wrappers
+-auto boxing/unboxing
+?
+
+Generics
+-class
+-method
+-interface
+-wildcard
+?
+
+Collections
+-interface
+-list interface
+?

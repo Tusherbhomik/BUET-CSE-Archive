@@ -1,0 +1,243 @@
+[
+    {
+      "usecase": {
+        "name": "Hotel Booking",
+        "scenario": "A user books a selected hotel after reviewing the details and confirming payment.",
+        "actors": "User",
+        "preconditions": "User has selected a hotel and entered the booking flow.",
+        "steps": [
+          "User reviews the hotel details.",
+          "User selects check-in and check-out dates.",
+          "User enters payment details.",
+          "System confirms the booking."
+        ]
+      },
+      "testcases": [
+        {
+          "name": "Valid Booking",
+          "description": "Verify that a user can successfully see a hotel with valid details.",
+          "input": {
+            "hotelID": "H123",
+            "Check In": "2024-09-27",
+            "Check Out": "2024-09-29",
+            "Current Date": "2024-09-27",
+            "Guests": {
+              "Rooms":  "1",
+              "Adults": "1",
+              "Children": "1"
+            },
+            "View Deal": "Booking.com"
+          },
+          "expected": {
+            "outcome": "Redirect to the offer in booking.com page",
+            "link": "H123 link at booking.com"
+          }
+        },
+        {
+          "name": "Booking with an invalid check in date ",
+          "description": "Verify that the given check in date is reasonable to current date.",
+          "input": {
+            "hotelID": "H123",
+            "Check In": "2024-09-23",
+            "Check Out": "2024-09-29",
+            "Current Date": "2024-09-27",
+            "Guests": {
+              "Rooms":  "1",
+              "Adults": "1",
+              "Children": "1"
+            },
+            "View Deal": "Booking.com"
+          },
+          "expected": {
+            "outcome": "Further Booking Process Halted",
+            "errorMessage": "Invalid Check In Date"
+          }
+        }
+        ,
+        {
+          "name": "Booking with invalid input in Guest field",
+          "description": "Verify that the given data in guest field is reasonable.",
+          "input": {
+            "hotelID": "H123",
+            "Check In": "2024-09-27",
+            "Check Out": "2024-09-29",
+            "Current Date": "2024-09-27",
+            "Guests": {
+              "Rooms":  "0",
+              "Adults": "1",
+              "Children": "1"
+            },
+            "View Deal": "Booking.com"
+          },
+          "expected": {
+            "outcome": "Further Booking Process Halted",
+            "errorMessage": "Invalid Rooms In Guest Field"
+          }
+        }
+        ,
+        {
+          "name": "Booking with a deal that is not available on that date",
+          "description": "Verify whether the deal is available on that data.",
+          "input": {
+            "hotelID": "H123",
+            "Check In": "2024-09-27",
+            "Check Out": "2024-09-29",
+            "Current Date": "2024-09-27",
+            "Guests": {
+              "Rooms":  "1",
+              "Adults": "1",
+              "Children": "1"
+            },
+            "View Deal": "Trip.com"
+          },
+          "expected": {
+            "outcome": "Further Booking Process Halted",
+            "errorMessage": "Deal is not available"
+          }
+        }
+      ]
+    }
+    ,
+{
+  "usecase": {
+    "name": "Personalized Trip Recommendations",
+    "scenario": "A user requests personalized recommendations for hotels, restaurants, and attractions based on their preferences, reviews, and interaction history.",
+    "actors": "User, Recommendation System",
+    "preconditions": "User is logged in with a completed profile and previous interaction history (e.g., reviews, favorites).",
+    "steps": [
+      "User navigates to the 'Recommendations' section from their dashboard.",
+      "User selects a new destination or activity type for recommendations.",
+      "System retrieves the user's profile details, including past interactions such as reviews, favorites, and past trips.",
+      "System analyzes these interactions using a recommendation algorithm and compares them with available listings for the selected destination.",
+      "System filters and ranks listings based on relevance to the user's preferences and other criteria (e.g., similar reviews from like-minded users).",
+      "Personalized recommendations for hotels, restaurants, and attractions are displayed to the user with detailed descriptions, reviews, and ratings.",
+      "User views the recommendations and can choose to save, share, or book directly from the recommendation list."
+    ]
+  },
+  "testcases": [
+    {
+      "name": "Generate Valid Recommendations",
+      "description": "Verify that the system can generate personalized recommendations based on the user's previous reviews, favorites, and preferences.",
+      "input": {
+        "userID": "U123",
+        "destination": "Paris",
+        "preferences": {
+          "favoriteCuisines": ["French", "Italian"],
+          "preferredHotelType": "Luxury",
+          "pastInteractions": {
+            "favoritedListings": ["R245", "H678"],
+            "reviewedListings": ["A567", "R124"]
+          }
+        }
+      },
+      "expected": {
+        "outcome": "System returns a list of personalized hotel, restaurant, and attraction recommendations in Paris that match the user's preferences.",
+        "status": "Success",
+        "recommendedListings": [
+          {
+            "listingID": "H789",
+            "type": "Hotel",
+            "name": "Le Meurice",
+            "rating": "5 stars",
+            "matchScore": 95
+          },
+          {
+            "listingID": "R890",
+            "type": "Restaurant",
+            "name": "Chez Janou",
+            "cuisine": "French",
+            "matchScore": 90
+          },
+          {
+            "listingID": "A123",
+            "type": "Attraction",
+            "name": "Louvre Museum",
+            "matchScore": 88
+          }
+        ]
+      }
+    },
+    {
+      "name": "Generate Recommendations Without Interaction History",
+      "description": "Verify the system's behavior when the user has no past interactions or preferences on file.",
+      "input": {
+        "userID": "U456",
+        "destination": "New York",
+        "preferences": {}
+      },
+      "expected": {
+        "outcome": "System provides generic recommendations for New York based on popular listings and general traveler preferences.",
+        "status": "Success",
+        "recommendedListings": [
+          {
+            "listingID": "H101",
+            "type": "Hotel",
+            "name": "The Plaza",
+            "rating": "5 stars",
+            "matchScore": 85
+          },
+          {
+            "listingID": "R202",
+            "type": "Restaurant",
+            "name": "Katz's Delicatessen",
+            "cuisine": "American",
+            "matchScore": 80
+          },
+          {
+            "listingID": "A303",
+            "type": "Attraction",
+            "name": "Statue of Liberty",
+            "matchScore": 78
+          }
+        ]
+      }
+    },
+    {
+      "name": "Generate Recommendations for Multiple Destinations",
+      "description": "Verify the system's ability to provide personalized recommendations when the user selects multiple destinations for a longer trip.",
+      "input": {
+        "userID": "U789",
+        "destination": ["Tokyo", "Kyoto"],
+        "preferences": {
+          "favoriteCuisines": ["Japanese", "Sushi"],
+          "preferredHotelType": "Traditional Ryokan",
+          "pastInteractions": {
+            "favoritedListings": ["R987"],
+            "reviewedListings": ["A654", "H321"]
+          }
+        }
+      },
+      "expected": {
+        "outcome": "System returns a list of personalized recommendations for both Tokyo and Kyoto, with tailored suggestions based on the user's preferences and interactions.",
+        "status": "Success",
+        "recommendedListings": [
+          {
+            "listingID": "H432",
+            "type": "Hotel",
+            "name": "Hoshinoya Tokyo",
+            "rating": "5 stars",
+            "location": "Tokyo",
+            "matchScore": 96
+          },
+          {
+            "listingID": "R543",
+            "type": "Restaurant",
+            "name": "Kyoto Kitcho",
+            "cuisine": "Japanese Kaiseki",
+            "location": "Kyoto",
+            "matchScore": 93
+          },
+          {
+            "listingID": "A678",
+            "type": "Attraction",
+            "name": "Fushimi Inari Shrine",
+            "location": "Kyoto",
+            "matchScore": 91
+          }
+        ]
+      }
+    }
+  ]
+}
+    
+    ]

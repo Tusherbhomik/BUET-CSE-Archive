@@ -1,0 +1,259 @@
+Presentation: 
+    User Interface
+    API Gateway
+
+Business Logic Layer: 
+    Analytics Service for Buyer 
+    Analytics Service for Seller 
+    Subscription Service  
+    Product Aggeration Service
+    ReviewService
+    Deal Metrics Service
+    User Engagement Analytics Service
+    Conversation Service
+    Product Forecast Service(Price/Reputation/Inventory)
+
+Persistence Layer:
+    DAO 
+    ORM
+
+Database Layer:
+    Relational
+    Time-Series
+
+Integration Layer
+    Web scraping
+    API Integration
+    Notification and Message Services
+
+Infrastructure Layer:
+    Cloud platform
+    Containerization
+    CI/CD
+    Monitoring
+    Log Management
+
+Presentation Layer:
+    Purpose: 
+    - Handles user interaction,
+    - ensuring a seamless experience for buyers and sellers. 
+    
+Components:
+    Buyer:
+    -   Personalized Deals UI
+    -   Trending Deals UI
+    -   Product Query UI
+    -   Deals List UI
+    -   Product Review UI
+    Seller:
+    -   Critical Inventory Product UI
+    -   Critical Reputation Product UI
+    -   Critical Price Update UI
+    -   Recent Product UI
+    -   Deal List UI
+    -   Product List UI
+    -   Custom Analytics UI
+    -   Product Review UI
+    Admin:
+    -   Scraping Dashboard
+    -   Scraping Configuration View
+    
+TECH STACK:
+    React.js: 
+        Selected because your project has multiple analytics dashboards and needs real-time updates for pricing and metrics. 
+        React's component reusability helps maintain consistency across buyer/seller interfaces
+    Material-UI + Tailwind: 
+        Chosen to rapidly build consistent interfaces for both analytics services while maintaining different UI themes for buyer vs seller dashboards
+    Recharts + D3.js: 
+        Essential for your price forecasting visualizations and deal metrics dashboards. 
+        Recharts handles standard charts for subscription analytics, while D3.js creates custom visualizations for complex user engagement patterns
+
+
+Business Logic Layer:
+    Purpose:
+    -   Implements the core logic of backend
+    -   Data processing, storing, retrieval workflow
+  
+    Components:
+        Analytics Service for Buyer 
+        Analytics Service for Seller
+        Subscription Service
+        Product Aggeration Service
+        ReviewService
+        Deal Metrics Service
+        User Engagement Analytics Service
+        Conversation Service
+        Product Forecast Service(Price/Reputation/Inventory)
+
+    Tech:
+    Backend Services: 
+        Spring Boot with embedded Tomcat
+            Powers 9 analytics microservices (buyer/seller analytics, pricing, subscriptions)
+            Built-in security for subscription and user data
+            Fast deployment with embedded Tomcat for analytics processing
+            Handles concurrent user sessions for real-time analytics
+    
+    Internal communication: 
+        Eureka Naming Server
+            Central registry for your 9 analytics services
+            Manages service discovery between Price Forecasting and Product Aggregation
+            Load balances analytics processing during peak user activity
+            Monitors health of critical subscription and pricing services
+
+Persistence Layer:
+    Purpose:
+    -   Abstracts interactions with the database
+    -   Provides schemas for database tables
+
+    Components:
+    DAO:
+    -   UserEngagementProfileDAO
+    -   BrowsingSessionDAO
+    -   BrowsingEventDAO
+    -   ProductUpdateDAO
+    -   NotificationDAO
+    -   ConversationModelDAO
+    -   MessageDAO
+
+    ORM:
+
+    Tech:
+    ORM: 
+        Java Persistence API (JPA)
+            Maps complex analytics data models to database tables
+            Handles relationships between user subscriptions and analytics data
+            Simplifies database operations for product and pricing information
+            Reduces development time for data access layer across 9 services
+    Cache:
+        Redis
+        Caches frequently accessed:
+            Product aggregation results
+            User analytics dashboards
+            Price forecasting calculations
+            Deal metrics
+
+
+Database Layer:
+    Purpose:
+    -   Actual storage and management of data
+    -   Handles relations between data
+    -   Enables querying data efficiently
+    -   Enables semantic search
+
+    Primary DB(Relational):
+    Stores
+    -   Product
+    -   Buyer
+    -   Seller
+    -   Deal
+    -   Reciew
+    -   Subscription
+    -   Scraping Rule
+    -   Scraping Target
+    -   Scraping Session
+    -   Scraped Product
+    
+    Time Series DB:
+    Stores
+    -   UserEngagementProfile
+    -   BrowsingSession
+    -   BrowsingEvent
+    -   ProductUpdate
+
+Tech:
+    PostgreSQL: 
+    Stores:
+        Complex user subscription data with multiple tiers
+        Product aggregation data requiring joins and relationships
+        Review data needing transaction support
+
+    InfluxDB: 
+    Specifically for:
+        Time-series price data for forecasting
+        User engagement metrics over time
+        Deal performance metrics tracking
+
+Integration Layer
+    Purpose
+    -   Abstracts communication with external APIs
+    -   Enables usage of external services with ease
+    Components:
+    -   Web scraping
+    -   API Integration
+    -   Notification and Messaging Services:
+        -   Notification
+        -   ConversationModel
+        -   Message
+    Tech:
+    -   Scrapy + BeautifulSoup
+        -   Scrapy: 
+            Handles large-scale product data extraction for price analytics
+        -   BeautifulSoup: 
+            Parses complex product details and pricing information
+        Combined use for efficient market trend data collection for forecasting
+
+    -   Retrofit
+            Handles secure REST API calls between analytics services
+            Manages subscription payment gateway integrations
+            Synchronizes external product data with aggregation service
+
+    -   Firebase Cloud Messaging (FCM) for in app notification 
+            Sends real-time price alert notifications to buyers
+            Delivers instant deal notifications based on analytics
+            Updates users about subscription status changes
+            Pushes important analytics report completions
+
+    -   SendGrid for email notifications
+            Sends detailed analytics reports to buyers/sellers
+            Delivers subscription invoices and payment confirmations
+            Notifies users about critical price changes
+            Sends periodic market trend analysis summarie
+
+Infrastructure Layer:
+    Purpose:
+    -   Provides foundational support for hosting and deployment the backend APIs, models and user’s data
+    -   Storing temporary data for different services
+    -   Storing resources like images, pdf in CDN
+    
+    Components:
+    -   Cloud platform
+    -   Containerization
+    -   CI/CD
+    -   Monitoring
+    -   Log management
+
+    Tech:
+    -   AWS
+        Hosts distributed analytics services across regions
+        Manages heavy data processing for price forecasting
+        Scales automatically during peak analytics requests
+        Handles secure storage of subscription and user data
+    
+    -   Kubernetes
+        Orchestrates your 9 microservices deployment
+        Auto-scales analytics services during high demand
+        Manages resource allocation for data processing
+        Ensures high availability of critical services like subscription and pricing
+
+    - Jenkins
+        Automates deployment of analytics services
+        Runs performance tests for price forecasting
+        Manages database migration pipelines
+
+    -   Github Actions
+        Automates code quality checks for services
+        Handles continuous integration of new analytics features
+        Manages automated testing of API endpoints
+
+    -   Prometheus
+        Tracks real-time performance of analytics services
+        Monitors price forecasting accuracy metrics
+        Alerts on subscription service anomalies
+        Measures API response times across services     
+
+    -   Splunk
+        Centralizes logs from all analytics services
+        Tracks user engagement patterns
+        Monitors subscription payment flows
+        Debugs price forecasting calculations
+        Analyzes system performance metrics

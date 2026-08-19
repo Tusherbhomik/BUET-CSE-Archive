@@ -1,4 +1,0 @@
-Average Info Gain: 85.31
-Average Info Gain (With Random): 75.97
-Average Gini Impurity: 85.29
-Average Gini Impurity (With Random): 76.27

@@ -1,0 +1,1 @@
+printf("This text is redirected to file.txt\n");

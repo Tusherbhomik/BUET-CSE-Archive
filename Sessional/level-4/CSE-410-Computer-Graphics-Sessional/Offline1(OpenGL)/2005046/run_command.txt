@@ -1,0 +1,2 @@
+In windows with powershell
+powershell -ExecutionPolicy Bypass -File .\run.ps1 test

@@ -1,6 +1,0 @@
-  Operation Time(ms)
-  Insert    349282000
-  delete    533124000
-  search    0
-  traversal 0
-  total     882406000

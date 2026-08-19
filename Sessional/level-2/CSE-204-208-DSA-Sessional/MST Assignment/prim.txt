@@ -1,0 +1,8 @@
+Total Weight = 34
+Root node = 0
+0 4
+4 1
+0 6
+6 3
+1 2
+2 5

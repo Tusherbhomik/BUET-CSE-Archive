@@ -1,0 +1,88 @@
+[
+  {
+    "usecase": {
+      "name": "User Login",
+      "scenario": "A registered user sign in into his Tripadvisor account.",
+      "actors": "User",
+      "preconditions": "User is not logged in.",
+      "steps": [
+        "User attempts to post a review or manage a booking.",
+        "System prompts the user to log in.",
+        "User enters their email and password.",
+        "System verifies the credentials and logs the user in.",
+        "User continues with the initial action (e.g., review submission or booking)."
+      ]
+    },
+    "testcases": [
+      {
+        "name": "Valid Login via Action",
+        "description": "Verify that a user is logged in when performing an action that prompts for login (e.g., submitting a review).",
+        "steps": [
+          "User attempts to submit a review.",
+          "The system prompts for login.",
+          "The user selects a third-party login method (e.g., Google or Facebook).",
+          "System successfully logs the user in."
+        ],
+        "expected": {
+          "outcome": "User is logged in and can continue the action.",
+          "status": "Login successful"
+        }
+      },
+      {
+        "name": "Invalid Login via Action",
+        "description": "Verify that the system handles invalid login attempts via a third-party login provider.",
+        "steps": [
+          "User attempts to submit a review.",
+          "The system prompts for login.",
+          "User selects a third-party login provider but fails authentication.",
+          "System displays an error message."
+        ],
+        "expected": {
+          "outcome": "Login fails and user is notified.",
+          "errorMessage": "Login failed. Please try again."
+        }
+      }
+    ]
+  },
+  {
+    "usecase": {
+      "name": "Trip Planning",
+      "scenario": "A user creates a trip plan by adding places to visit, hotels, and restaurants.",
+      "actors": "User",
+      "preconditions": "User is logged in and has started a trip plan.",
+      "steps": [
+        "User adds places to visit.",
+        "User selects hotels and restaurants.",
+        "System saves the trip plan."
+      ]
+    },
+    "testcases": [
+      {
+        "name": "Valid Trip Plan Creation",
+        "description": "Verify that a user can successfully create a trip plan with valid details.",
+        "input": {
+          "Trip name": ["Eiffel Tower", "Louvre Museum"],
+          "hotels": ["Hotel Paris"],
+          "restaurants": ["Le Meurice"]
+        },
+        "expected": {
+          "outcome": "Trip plan created successfully",
+          "status": "Saved"
+        }
+      },
+      {
+        "name": "Trip Plan with Missing Details",
+        "description": "Verify that the system handles trip planning with missing places or hotels.",
+        "input": {
+          "places": [],
+          "hotels": ["Hotel Paris"],
+          "restaurants": []
+        },
+        "expected": {
+          "outcome": "Trip plan creation failed",
+          "errorMessage": "At least one place must be added."
+        }
+      }
+    ]
+  }
+]

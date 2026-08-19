@@ -1,0 +1,19 @@
+class first {
+    int x = 3;
+    int sum() {
+        return x + second.y + second.t.z;
+    }
+    static class second {
+        int y = 4;
+        third t;
+        class third {
+            int z = 5;
+        }
+    }
+}
+public class NestedClassTest2 {
+	public static void main(String[] args) {
+		
+	}
+}
+

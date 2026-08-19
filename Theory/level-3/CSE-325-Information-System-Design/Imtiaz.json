@@ -1,0 +1,111 @@
+[
+{
+  "usecase": {
+    "name": "Flight Search",
+    "scenario": "A user searches for flights between two destinations on specific dates.",
+    "actors": "User",
+    "preconditions": "User is on the flight search page.",
+    "steps": [
+      "User selects departure and destination locations.",
+      "User selects travel dates.",
+      "System displays available flights."
+    ]
+  },
+  "testcases": [
+    {
+      "name": "Valid Flight Search",
+      "description": "Verify that a user can successfully search for flights with valid destinations and dates.",
+      "input": {
+        "departureLocation": "New York",
+        "destinationLocation": "Los Angeles",
+        "departureDate": "2024-12-01",
+        "returnDate": "2024-12-10"
+      },
+      "expected": {
+        "outcome": "Flight search successful",
+        "resultsCount": ">0"
+      }
+    },
+    {
+      "name": "Flight Search with Invalid Dates",
+      "description": "Verify that the system handles searches with past or invalid dates.",
+      "input": {
+        "departureLocation": "New York",
+        "destinationLocation": "Los Angeles",
+        "departureDate": "2020-01-01",
+        "returnDate": "2020-01-10"
+      },
+      "expected": {
+        "outcome": "Flight search failed",
+        "errorMessage": "Invalid travel dates."
+      }
+    }
+  ]
+}
+,
+{
+  "usecase": {
+    "name": "Tour or Activity Booking",
+    "scenario": "A user books a tour or activity after reviewing the details and confirming payment.",
+    "actors": "User",
+    "preconditions": "User is logged in and has selected a tour or activity.",
+    "steps": [
+      "User reviews tour or activity details.",
+      "User selects the date and number of participants.",
+      "User enters payment details.",
+      "System confirms the booking."
+    ]
+  },
+  "testcases": [
+    {
+      "name": "Valid Tour Booking",
+      "description": "Verify that a user can successfully book a tour with valid details and payment.",
+      "input": {
+        "tourID": "T123",
+        "date": "2024-12-01",
+        "participants": 2,
+        "paymentDetails": {
+          "cardNumber": "1234567890123456",
+          "expiryDate": "12/25",
+          "CVV": "123"
+        }
+      },
+      "expected": {
+        "outcome": "Booking successful",
+        "bookingID": "B456"
+      }
+    },
+    {
+      "name": "Booking with Invalid Payment",
+      "description": "Verify that the system handles invalid payment details during tour booking.",
+      "input": {
+        "tourID": "T123",
+        "date": "2024-12-01",
+        "participants": 2,
+        "paymentDetails": {
+          "cardNumber": "invalid",
+          "expiryDate": "12/25",
+          "CVV": "123"
+        }
+      },
+      "expected": {
+        "outcome": "Booking failed",
+        "errorMessage": "Invalid payment details."
+      }
+    },
+    {
+      "name": "Overbooking Participants",
+      "description": "Verify that the system handles the case where the number of participants exceeds the tour capacity.",
+      "input": {
+        "tourID": "T123",
+        "date": "2024-12-01",
+        "participants": 100
+      },
+      "expected": {
+        "outcome": "Booking failed",
+        "errorMessage": "Number of participants exceeds capacity."
+      }
+    }
+  ]
+}
+]

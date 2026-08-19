@@ -1,0 +1,729 @@
+[
+    {
+        "usecase": {
+            "name": "User Login",
+            "scenario": "A registered user sign in into his Tripadvisor account.",
+            "actors": "User",
+            "preconditions": "User is not logged in.",
+            "steps": [
+                "User attempts to post a review or manage a booking.",
+                "System prompts the user to log in.",
+                "User enters their email and password.",
+                "System verifies the credentials and logs the user in.",
+                "User continues with the initial action (e.g., review submission or booking)."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Login via Action",
+                "description": "Verify that a user is logged in when performing an action that prompts for login (e.g., submitting a review).",
+                "steps": [
+                    "User attempts to submit a review.",
+                    "The system prompts for login.",
+                    "The user selects a third-party login method (e.g., Google or Facebook).",
+                    "System successfully logs the user in."
+                ],
+                "expected": {
+                    "outcome": "User is logged in and can continue the action.",
+                    "status": "Login successful"
+                }
+            },
+            {
+                "name": "Invalid Login via Action",
+                "description": "Verify that the system handles invalid login attempts via a third-party login provider.",
+                "steps": [
+                    "User attempts to submit a review.",
+                    "The system prompts for login.",
+                    "User selects a third-party login provider but fails authentication.",
+                    "System displays an error message."
+                ],
+                "expected": {
+                    "outcome": "Login fails and user is notified.",
+                    "errorMessage": "Login failed. Please try again."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Trip Planning",
+            "scenario": "A user creates a trip plan by adding places to visit, hotels, and restaurants.",
+            "actors": "User",
+            "preconditions": "User is logged in and has started a trip plan.",
+            "steps": [
+                "User adds places to visit.",
+                "User selects hotels and restaurants.",
+                "System saves the trip plan."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Trip Plan Creation",
+                "description": "Verify that a user can successfully create a trip plan with valid details.",
+                "input": {
+                    "Trip name": [
+                        "Eiffel Tower",
+                        "Louvre Museum"
+                    ],
+                    "hotels": [
+                        "Hotel Paris"
+                    ],
+                    "restaurants": [
+                        "Le Meurice"
+                    ]
+                },
+                "expected": {
+                    "outcome": "Trip plan created successfully",
+                    "status": "Saved"
+                }
+            },
+            {
+                "name": "Trip Plan with Missing Details",
+                "description": "Verify that the system handles trip planning with missing places or hotels.",
+                "input": {
+                    "places": [],
+                    "hotels": [
+                        "Hotel Paris"
+                    ],
+                    "restaurants": []
+                },
+                "expected": {
+                    "outcome": "Trip plan creation failed",
+                    "errorMessage": "At least one place must be added."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Flight Search",
+            "scenario": "A user searches for flights between two destinations on specific dates.",
+            "actors": "User",
+            "preconditions": "User is on the flight search page.",
+            "steps": [
+                "User selects departure and destination locations.",
+                "User selects travel dates.",
+                "System displays available flights."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Flight Search",
+                "description": "Verify that a user can successfully search for flights with valid destinations and dates.",
+                "input": {
+                    "departureLocation": "New York",
+                    "destinationLocation": "Los Angeles",
+                    "departureDate": "2024-12-01",
+                    "returnDate": "2024-12-10"
+                },
+                "expected": {
+                    "outcome": "Flight search successful",
+                    "resultsCount": ">0"
+                }
+            },
+            {
+                "name": "Flight Search with Invalid Dates",
+                "description": "Verify that the system handles searches with past or invalid dates.",
+                "input": {
+                    "departureLocation": "New York",
+                    "destinationLocation": "Los Angeles",
+                    "departureDate": "2020-01-01",
+                    "returnDate": "2020-01-10"
+                },
+                "expected": {
+                    "outcome": "Flight search failed",
+                    "errorMessage": "Invalid travel dates."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Tour or Activity Booking",
+            "scenario": "A user books a tour or activity after reviewing the details and confirming payment.",
+            "actors": "User",
+            "preconditions": "User is logged in and has selected a tour or activity.",
+            "steps": [
+                "User reviews tour or activity details.",
+                "User selects the date and number of participants.",
+                "User enters payment details.",
+                "System confirms the booking."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Tour Booking",
+                "description": "Verify that a user can successfully book a tour with valid details and payment.",
+                "input": {
+                    "tourID": "T123",
+                    "date": "2024-12-01",
+                    "participants": 2,
+                    "paymentDetails": {
+                        "cardNumber": "1234567890123456",
+                        "expiryDate": "12/25",
+                        "CVV": "123"
+                    }
+                },
+                "expected": {
+                    "outcome": "Booking successful",
+                    "bookingID": "B456"
+                }
+            },
+            {
+                "name": "Booking with Invalid Payment",
+                "description": "Verify that the system handles invalid payment details during tour booking.",
+                "input": {
+                    "tourID": "T123",
+                    "date": "2024-12-01",
+                    "participants": 2,
+                    "paymentDetails": {
+                        "cardNumber": "invalid",
+                        "expiryDate": "12/25",
+                        "CVV": "123"
+                    }
+                },
+                "expected": {
+                    "outcome": "Booking failed",
+                    "errorMessage": "Invalid payment details."
+                }
+            },
+            {
+                "name": "Overbooking Participants",
+                "description": "Verify that the system handles the case where the number of participants exceeds the tour capacity.",
+                "input": {
+                    "tourID": "T123",
+                    "date": "2024-12-01",
+                    "participants": 100
+                },
+                "expected": {
+                    "outcome": "Booking failed",
+                    "errorMessage": "Number of participants exceeds capacity."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Hotel Booking",
+            "scenario": "A user books a selected hotel after reviewing the details and confirming payment.",
+            "actors": "User",
+            "preconditions": "User has selected a hotel and entered the booking flow.",
+            "steps": [
+                "User reviews the hotel details.",
+                "User selects check-in and check-out dates.",
+                "User enters payment details.",
+                "System confirms the booking."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Booking",
+                "description": "Verify that a user can successfully see a hotel with valid details.",
+                "input": {
+                    "hotelID": "H123",
+                    "Check In": "2024-09-27",
+                    "Check Out": "2024-09-29",
+                    "Current Date": "2024-09-27",
+                    "Guests": {
+                        "Rooms": "1",
+                        "Adults": "1",
+                        "Children": "1"
+                    },
+                    "View Deal": "Booking.com"
+                },
+                "expected": {
+                    "outcome": "Redirect to the offer in booking.com page",
+                    "link": "H123 link at booking.com"
+                }
+            },
+            {
+                "name": "Booking with an invalid check in date ",
+                "description": "Verify that the given check in date is reasonable to current date.",
+                "input": {
+                    "hotelID": "H123",
+                    "Check In": "2024-09-23",
+                    "Check Out": "2024-09-29",
+                    "Current Date": "2024-09-27",
+                    "Guests": {
+                        "Rooms": "1",
+                        "Adults": "1",
+                        "Children": "1"
+                    },
+                    "View Deal": "Booking.com"
+                },
+                "expected": {
+                    "outcome": "Further Booking Process Halted",
+                    "errorMessage": "Invalid Check In Date"
+                }
+            },
+            {
+                "name": "Booking with invalid input in Guest field",
+                "description": "Verify that the given data in guest field is reasonable.",
+                "input": {
+                    "hotelID": "H123",
+                    "Check In": "2024-09-27",
+                    "Check Out": "2024-09-29",
+                    "Current Date": "2024-09-27",
+                    "Guests": {
+                        "Rooms": "0",
+                        "Adults": "1",
+                        "Children": "1"
+                    },
+                    "View Deal": "Booking.com"
+                },
+                "expected": {
+                    "outcome": "Further Booking Process Halted",
+                    "errorMessage": "Invalid Rooms In Guest Field"
+                }
+            },
+            {
+                "name": "Booking with a deal that is not available on that date",
+                "description": "Verify whether the deal is available on that data.",
+                "input": {
+                    "hotelID": "H123",
+                    "Check In": "2024-09-27",
+                    "Check Out": "2024-09-29",
+                    "Current Date": "2024-09-27",
+                    "Guests": {
+                        "Rooms": "1",
+                        "Adults": "1",
+                        "Children": "1"
+                    },
+                    "View Deal": "Trip.com"
+                },
+                "expected": {
+                    "outcome": "Further Booking Process Halted",
+                    "errorMessage": "Deal is not available"
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Personalized Trip Recommendations",
+            "scenario": "A user requests personalized recommendations for hotels, restaurants, and attractions based on their preferences, reviews, and interaction history.",
+            "actors": "User, Recommendation System",
+            "preconditions": "User is logged in with a completed profile and previous interaction history (e.g., reviews, favorites).",
+            "steps": [
+                "User navigates to the 'Recommendations' section from their dashboard.",
+                "User selects a new destination or activity type for recommendations.",
+                "System retrieves the user's profile details, including past interactions such as reviews, favorites, and past trips.",
+                "System analyzes these interactions using a recommendation algorithm and compares them with available listings for the selected destination.",
+                "System filters and ranks listings based on relevance to the user's preferences and other criteria (e.g., similar reviews from like-minded users).",
+                "Personalized recommendations for hotels, restaurants, and attractions are displayed to the user with detailed descriptions, reviews, and ratings.",
+                "User views the recommendations and can choose to save, share, or book directly from the recommendation list."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Generate Valid Recommendations",
+                "description": "Verify that the system can generate personalized recommendations based on the user's previous reviews, favorites, and preferences.",
+                "input": {
+                    "userID": "U123",
+                    "destination": "Paris",
+                    "preferences": {
+                        "favoriteCuisines": [
+                            "French",
+                            "Italian"
+                        ],
+                        "preferredHotelType": "Luxury",
+                        "pastInteractions": {
+                            "favoritedListings": [
+                                "R245",
+                                "H678"
+                            ],
+                            "reviewedListings": [
+                                "A567",
+                                "R124"
+                            ]
+                        }
+                    }
+                },
+                "expected": {
+                    "outcome": "System returns a list of personalized hotel, restaurant, and attraction recommendations in Paris that match the user's preferences.",
+                    "status": "Success",
+                    "recommendedListings": [
+                        {
+                            "listingID": "H789",
+                            "type": "Hotel",
+                            "name": "Le Meurice",
+                            "rating": "5 stars",
+                            "matchScore": 95
+                        },
+                        {
+                            "listingID": "R890",
+                            "type": "Restaurant",
+                            "name": "Chez Janou",
+                            "cuisine": "French",
+                            "matchScore": 90
+                        },
+                        {
+                            "listingID": "A123",
+                            "type": "Attraction",
+                            "name": "Louvre Museum",
+                            "matchScore": 88
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Generate Recommendations Without Interaction History",
+                "description": "Verify the system's behavior when the user has no past interactions or preferences on file.",
+                "input": {
+                    "userID": "U456",
+                    "destination": "New York",
+                    "preferences": {}
+                },
+                "expected": {
+                    "outcome": "System provides generic recommendations for New York based on popular listings and general traveler preferences.",
+                    "status": "Success",
+                    "recommendedListings": [
+                        {
+                            "listingID": "H101",
+                            "type": "Hotel",
+                            "name": "The Plaza",
+                            "rating": "5 stars",
+                            "matchScore": 85
+                        },
+                        {
+                            "listingID": "R202",
+                            "type": "Restaurant",
+                            "name": "Katz's Delicatessen",
+                            "cuisine": "American",
+                            "matchScore": 80
+                        },
+                        {
+                            "listingID": "A303",
+                            "type": "Attraction",
+                            "name": "Statue of Liberty",
+                            "matchScore": 78
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Generate Recommendations for Multiple Destinations",
+                "description": "Verify the system's ability to provide personalized recommendations when the user selects multiple destinations for a longer trip.",
+                "input": {
+                    "userID": "U789",
+                    "destination": [
+                        "Tokyo",
+                        "Kyoto"
+                    ],
+                    "preferences": {
+                        "favoriteCuisines": [
+                            "Japanese",
+                            "Sushi"
+                        ],
+                        "preferredHotelType": "Traditional Ryokan",
+                        "pastInteractions": {
+                            "favoritedListings": [
+                                "R987"
+                            ],
+                            "reviewedListings": [
+                                "A654",
+                                "H321"
+                            ]
+                        }
+                    }
+                },
+                "expected": {
+                    "outcome": "System returns a list of personalized recommendations for both Tokyo and Kyoto, with tailored suggestions based on the user's preferences and interactions.",
+                    "status": "Success",
+                    "recommendedListings": [
+                        {
+                            "listingID": "H432",
+                            "type": "Hotel",
+                            "name": "Hoshinoya Tokyo",
+                            "rating": "5 stars",
+                            "location": "Tokyo",
+                            "matchScore": 96
+                        },
+                        {
+                            "listingID": "R543",
+                            "type": "Restaurant",
+                            "name": "Kyoto Kitcho",
+                            "cuisine": "Japanese Kaiseki",
+                            "location": "Kyoto",
+                            "matchScore": 93
+                        },
+                        {
+                            "listingID": "A678",
+                            "type": "Attraction",
+                            "name": "Fushimi Inari Shrine",
+                            "location": "Kyoto",
+                            "matchScore": 91
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Hotel Review Submission",
+            "scenario": "A user writes and submits a review for a hotel they stayed at.",
+            "actors": "User",
+            "preconditions": "User has completed a stay at the hotel and is logged in.",
+            "steps": [
+                "User navigates to the review section for the hotel.",
+                "User writes a review and rates the hotel.",
+                "User submits the review."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Review Submission",
+                "description": "Verify that a user can successfully submit a review with valid details.",
+                "input": {
+                    "hotelID": "H789",
+                    "review": "Great hotel with excellent service.",
+                    "rating": 5
+                },
+                "expected": {
+                    "outcome": "Review submitted successfully",
+                    "status": "Published"
+                }
+            },
+            {
+                "name": "Empty Review Submission",
+                "description": "Verify that the system handles review submission without text or rating.",
+                "input": {
+                    "hotelID": "H789",
+                    "review": "",
+                    "rating": 0
+                },
+                "expected": {
+                    "outcome": "Review submission failed",
+                    "errorMessage": "Please provide a rating and review."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Account Registration",
+            "scenario": "A new user creates an account on Tripadvisor.",
+            "actors": "User",
+            "preconditions": "User is on the registration page.",
+            "steps": [
+                "User enters their details (name, email, password, etc.).",
+                "User agrees to the terms and conditions.",
+                "User submits the registration form.",
+                "System creates the account and sends a confirmation email."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Registration",
+                "description": "Verify that a user can successfully create an account with valid details.",
+                "input": {
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "password": "strongpassword",
+                    "termsAccepted": true
+                },
+                "expected": {
+                    "outcome": "Registration successful",
+                    "userID": "U456"
+                }
+            },
+            {
+                "name": "Registration with Existing Email",
+                "description": "Verify that the system handles account registration with an already existing email.",
+                "input": {
+                    "name": "Jane Doe",
+                    "email": "john.doe@example.com",
+                    "password": "strongpassword",
+                    "termsAccepted": true
+                },
+                "expected": {
+                    "outcome": "Registration failed",
+                    "errorMessage": "Email already in use."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Restaurant Review Submission",
+            "scenario": "A user writes and submits a review for a restaurant they visited.",
+            "actors": "User",
+            "preconditions": "User has visited the restaurant and is logged in.",
+            "steps": [
+                "User navigates to the review section for the restaurant.",
+                "User writes a review and rates the restaurant.",
+                "User submits the review."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Review Submission",
+                "description": "Verify that a user can successfully submit a review with valid details.",
+                "input": {
+                    "restaurantID": "R123",
+                    "review": "Delicious food and great ambiance.",
+                    "rating": 5
+                },
+                "expected": {
+                    "outcome": "Review submitted successfully",
+                    "status": "Published"
+                }
+            },
+            {
+                "name": "Empty Review Submission",
+                "description": "Verify that the system handles review submission without text or rating.",
+                "input": {
+                    "restaurantID": "R123",
+                    "review": "",
+                    "rating": 0
+                },
+                "expected": {
+                    "outcome": "Review submission failed",
+                    "errorMessage": "Please provide a rating and review."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "User Profile Update",
+            "scenario": "A logged-in user updates their personal profile information on Tripadvisor.",
+            "actors": "User",
+            "preconditions": "User is logged into their account.",
+            "steps": [
+                "User navigates to the profile settings.",
+                "User updates personal information (name, bio, etc.).",
+                "System saves the updated information."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Profile Update",
+                "description": "Verify that a user can successfully update their profile with valid details.",
+                "input": {
+                    "userID": "U123",
+                    "name": "John Doe",
+                    "bio": "Travel enthusiast."
+                },
+                "expected": {
+                    "outcome": "Profile update successful",
+                    "status": "Updated"
+                }
+            },
+            {
+                "name": "Profile Update with Empty Fields",
+                "description": "Verify that the system handles profile update attempts with empty mandatory fields.",
+                "input": {
+                    "userID": "U123",
+                    "name": "",
+                    "bio": ""
+                },
+                "expected": {
+                    "outcome": "Profile update failed",
+                    "errorMessage": "Name field is required."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Hotel Search",
+            "scenario": "A user searches for hotels in a specific destination with specific filters.",
+            "actors": "User",
+            "preconditions": "User is on the homepage or hotel search page.",
+            "steps": [
+                "User enters a destination.",
+                "User applies filters (price range, rating, amenities, etc.).",
+                "System displays the search results."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Search with Filters",
+                "description": "Verify that a user can successfully search for hotels with valid destination and filters.",
+                "input": {
+                    "destination": "New York",
+                    "filters": {
+                        "priceRange": "$100-$300",
+                        "rating": "4+",
+                        "amenities": [
+                            "WiFi",
+                            "Pool"
+                        ]
+                    }
+                },
+                "expected": {
+                    "outcome": "Search successful",
+                    "resultsCount": ">0"
+                }
+            },
+            {
+                "name": "Search with No Filters",
+                "description": "Verify that a user can search for hotels without applying filters.",
+                "input": {
+                    "destination": "Paris",
+                    "filters": {}
+                },
+                "expected": {
+                    "outcome": "Search successful",
+                    "resultsCount": ">0"
+                }
+            },
+            {
+                "name": "Invalid Destination",
+                "description": "Verify that the system handles searches with invalid or empty destination.",
+                "input": {
+                    "destination": "",
+                    "filters": {}
+                },
+                "expected": {
+                    "outcome": "Search failed",
+                    "errorMessage": "Please enter a destination."
+                }
+            }
+        ]
+    },
+    {
+        "usecase": {
+            "name": "Restaurant Search",
+            "scenario": "A user searches for restaurants in a specific location with filters like cuisine type and rating.",
+            "actors": "User",
+            "preconditions": "User is on the restaurant search page.",
+            "steps": [
+                "User selects a location.",
+                "User applies filters (cuisine type, rating, etc.).",
+                "System displays the search results."
+            ]
+        },
+        "testcases": [
+            {
+                "name": "Valid Restaurant Search",
+                "description": "Verify that a user can successfully search for restaurants with valid filters.",
+                "input": {
+                    "location": "San Francisco",
+                    "filters": {
+                        "cuisine": "Italian",
+                        "rating": "4+"
+                    }
+                },
+                "expected": {
+                    "outcome": "Search successful",
+                    "resultsCount": ">0"
+                }
+            },
+            {
+                "name": "Invalid Location Search",
+                "description": "Verify that the system handles invalid or empty location inputs during restaurant search.",
+                "input": {
+                    "location": "",
+                    "filters": {}
+                },
+                "expected": {
+                    "outcome": "Search failed",
+                    "errorMessage": "Please enter a valid location."
+                }
+            }
+        ]
+    }
+]
